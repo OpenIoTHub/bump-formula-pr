@@ -1,0 +1,18 @@
+os: osx
+notifications:
+  email:
+    recipients:
+      - newfarry@126.com
+    on_success: always
+addons:
+  homebrew:
+    packages:
+      - gateway-go
+after_success:
+  - gateway-go -v
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: brew bump-formula-pr --tag=v0.1.82 --revision=00ef621e82242a170181c057244756931607e955 --strict gateway-go
+    on:
+      tags: true
