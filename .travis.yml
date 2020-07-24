@@ -3,17 +3,18 @@ osx_image: xcode11.6
 notifications:
   email:
     recipients:
-      - newfarry@126.com
+    - newfarry@126.com
     on_success: always
-#addons:
-#  homebrew:
-#    packages:
-#      - gateway-go
 script:
-  - cat README.md
+- cat README.md
+- env
 deploy:
-  - provider: script
-    skip_cleanup: true
-    script: brew bump-formula-pr --tag=v0.1.82 --revision=00ef621e82242a170181c057244756931607e955 --strict gateway-go
-    on:
-      tags: true
+- provider: script
+  skip_cleanup: true
+  script: brew bump-formula-pr --tag=v0.1.82 --revision=00ef621e82242a170181c057244756931607e955
+    --strict gateway-go
+  on:
+    tags: true
+env:
+  global:
+    secure: UTbw1zSNvwoR+3d0E0NiOKmSETEjoqbQd4ARyPCfFamwHmOhMi2BM1MpFS/+2ZOs5vWD70iJRmPkWg2j6A9VkMVCF8oDT+NtPYo7DtdzmyZqc/Yb0kgOhKoY4Onj61JxWicIz2OapY7S6QqQGO2RJoQCh+2cI2n0wIhAl6ADHpcPZaKDtE85WOS5UkPqvucAz1KJkhGKIqHNk60tPArfQPVEOCSV3cLstxgkAwENsrPrVlc8NaNrBMlqlpQWOYYUEmUcTmdPWghNlXCZHZVWNT8FTUn8Yez6QpTsmEoWdgkbVe3msRntpIhyFhk6OB6cG1bjVaZi7NThpwt0WW6ZH+FchjqP2XTD/rr1jEDvSq5EgMSfcGvC1+/+hs9seAPERYFpXv3b/Z5H7B2m114OVxzr4nz3Pk7yQUZ3phKdrmnxCDMca2zdbmLOHhc8DZY/To/geDXDVQI3FFoibErUE5KdeMva9LMRmeaSTHtfgaXi61JlHz9BFcCH1TlpAav5j+uPQQmjsxMQ3o3OK2LpQmoWq6pO4c/sAEa4FgdxISNo/AGtGvtyUY6dRGTlDo2cVG4e6gA4MTMYlGHr10PVqf40K7oH7yhKqWV+x13ykVkdxaC8+1WKeVMfUIoVlI5EvMQOrrLhVwOLd/GvQjPsiD05WIMJMXZA+vD+XVFgpGU=
