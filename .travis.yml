@@ -5,12 +5,12 @@ notifications:
     recipients:
       - newfarry@126.com
     on_success: always
-addons:
-  homebrew:
-    packages:
-      - gateway-go
+#addons:
+#  homebrew:
+#    packages:
+#      - gateway-go
 script:
-  - gateway-go -v
+  - cat README.md
 deploy:
   - provider: script
     skip_cleanup: true
