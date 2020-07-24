@@ -9,7 +9,7 @@ addons:
   homebrew:
     packages:
       - gateway-go
-after_success:
+script:
   - gateway-go -v
 deploy:
   - provider: script
