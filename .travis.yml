@@ -8,7 +8,13 @@ notifications:
 script:
 - cat README.md
 - brew update
-- brew install gateway-go
+- rm $(brew --repo homebrew/core)/gateway-go.rb
+- cp gateway-go.rb $(brew --repo homebrew/core)
+- brew test gateway-go
+- brew audit --strict gateway-go
+- brew style gateway-go
+- cat $(brew --repo homebrew/core)/gateway-go.rb
+
 deploy:
 - provider: script
   skip_cleanup: true
