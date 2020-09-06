@@ -12,7 +12,7 @@ script:
 deploy:
 - provider: script
   skip_cleanup: true
-  script: brew bump-formula-pr --tag=v0.1.87 --revision=471662da313928f475ff6836e5b78227fbec1050
+  script: brew bump-formula-pr --tag=v0.1.91 --revision=8df96b8ae676344c14277c61ee8ac8bb206d8ef9
     --strict gateway-go
   on:
     tags: true
