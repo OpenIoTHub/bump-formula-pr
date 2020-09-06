@@ -10,6 +10,7 @@ script:
 - brew update
 - rm $(brew --repo homebrew/core)/Formula/gateway-go.rb
 - cp gateway-go.rb $(brew --repo homebrew/core)/Formula
+- brew install --build-from-source gateway-go
 - brew test gateway-go
 - brew audit --strict gateway-go
 - brew style gateway-go
