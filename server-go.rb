@@ -2,8 +2,9 @@ class ServerGo < Formula
   desc "Server for OpenIoTHub"
   homepage "https://github.com/OpenIoTHub/server-go"
   url "https://github.com/OpenIoTHub/server-go.git",
-      :tag      => "v1.1.58",
-      :revision => "4c4f27fa71996d186ad10e0dee89c0619f9b978f"
+      tag:      "v1.1.58",
+      revision: "4c4f27fa71996d186ad10e0dee89c0619f9b978f"
+  license "MIT"
 
   depends_on "go" => :build
 
