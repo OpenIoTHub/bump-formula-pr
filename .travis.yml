@@ -40,7 +40,7 @@ jobs:
       script:
         - cat README.md
         - brew update
-        - rm $(brew --repo homebrew/core)/Formula/server-go.rb
+#        - rm $(brew --repo homebrew/core)/Formula/server-go.rb
         - cp server-go.rb $(brew --repo homebrew/core)/Formula
         - brew install --build-from-source server-go
         - brew test server-go
