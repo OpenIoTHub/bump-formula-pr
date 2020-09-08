@@ -44,6 +44,6 @@ jobs:
         - cp server-go.rb $(brew --repo homebrew/core)/Formula
         - brew install --build-from-source server-go
         - brew test server-go
-        - brew audit --strict server-go
+        - brew audit --strict --new-formula server-go
         - brew style server-go
         - cat $(brew --repo homebrew/core)/Formula/server-go.rb
