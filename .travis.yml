@@ -1,50 +1,51 @@
 jobs:
   include:
-    - stage: testGatewayGO
-      os: osx
-      osx_image: xcode11.6
-      notifications:
-        email:
-          recipients:
-          - newfarry@126.com
-          on_success: always
-      script:
-      - cat README.md
-      - brew update
-      - rm $(brew --repo homebrew/core)/Formula/gateway-go.rb
-      - cp gateway-go.rb $(brew --repo homebrew/core)/Formula
-      - brew install --build-from-source gateway-go
-      - brew test gateway-go
-      - brew audit --strict gateway-go
-      - brew style gateway-go
-      - cat $(brew --repo homebrew/core)/Formula/gateway-go.rb
-
-      deploy:
-      - provider: script
-        skip_cleanup: true
-        script: brew bump-formula-pr --tag=v0.1.91 --revision=8df96b8ae676344c14277c61ee8ac8bb206d8ef9
-          --strict gateway-go
-        on:
-          tags: true
-      env:
-        global:
-          secure: UTbw1zSNvwoR+3d0E0NiOKmSETEjoqbQd4ARyPCfFamwHmOhMi2BM1MpFS/+2ZOs5vWD70iJRmPkWg2j6A9VkMVCF8oDT+NtPYo7DtdzmyZqc/Yb0kgOhKoY4Onj61JxWicIz2OapY7S6QqQGO2RJoQCh+2cI2n0wIhAl6ADHpcPZaKDtE85WOS5UkPqvucAz1KJkhGKIqHNk60tPArfQPVEOCSV3cLstxgkAwENsrPrVlc8NaNrBMlqlpQWOYYUEmUcTmdPWghNlXCZHZVWNT8FTUn8Yez6QpTsmEoWdgkbVe3msRntpIhyFhk6OB6cG1bjVaZi7NThpwt0WW6ZH+FchjqP2XTD/rr1jEDvSq5EgMSfcGvC1+/+hs9seAPERYFpXv3b/Z5H7B2m114OVxzr4nz3Pk7yQUZ3phKdrmnxCDMca2zdbmLOHhc8DZY/To/geDXDVQI3FFoibErUE5KdeMva9LMRmeaSTHtfgaXi61JlHz9BFcCH1TlpAav5j+uPQQmjsxMQ3o3OK2LpQmoWq6pO4c/sAEa4FgdxISNo/AGtGvtyUY6dRGTlDo2cVG4e6gA4MTMYlGHr10PVqf40K7oH7yhKqWV+x13ykVkdxaC8+1WKeVMfUIoVlI5EvMQOrrLhVwOLd/GvQjPsiD05WIMJMXZA+vD+XVFgpGU=
-    - stage: testServerGO
-      os: osx
-      osx_image: xcode11.6
-      notifications:
-        email:
-          recipients:
-            - newfarry@126.com
-          on_success: always
-      script:
-        - cat README.md
-        - brew update
-#        - rm $(brew --repo homebrew/core)/Formula/server-go.rb
-        - cp server-go.rb $(brew --repo homebrew/core)/Formula
-        - brew install --build-from-source server-go
-        - brew test server-go
-        - brew audit --strict --new-formula server-go
-        - brew style server-go
-        - cat $(brew --repo homebrew/core)/Formula/server-go.rb
-        - brew services start server-go
+  - stage: testGatewayGO
+    os: osx
+    osx_image: xcode11.6
+    notifications:
+      email:
+        recipients:
+        - newfarry@126.com
+        on_success: always
+    script:
+    - cat README.md
+    - brew update
+    - rm $(brew --repo homebrew/core)/Formula/gateway-go.rb
+    - cp gateway-go.rb $(brew --repo homebrew/core)/Formula
+    - brew install --build-from-source gateway-go
+    - brew test gateway-go
+    - brew audit --strict gateway-go
+    - brew style gateway-go
+    - cat $(brew --repo homebrew/core)/Formula/gateway-go.rb
+    deploy:
+    - provider: script
+      skip_cleanup: true
+      script: brew bump-formula-pr --tag=v0.1.91 --revision=8df96b8ae676344c14277c61ee8ac8bb206d8ef9
+        --strict gateway-go
+      on:
+        tags: true
+    env:
+      global:
+        secure: UTbw1zSNvwoR+3d0E0NiOKmSETEjoqbQd4ARyPCfFamwHmOhMi2BM1MpFS/+2ZOs5vWD70iJRmPkWg2j6A9VkMVCF8oDT+NtPYo7DtdzmyZqc/Yb0kgOhKoY4Onj61JxWicIz2OapY7S6QqQGO2RJoQCh+2cI2n0wIhAl6ADHpcPZaKDtE85WOS5UkPqvucAz1KJkhGKIqHNk60tPArfQPVEOCSV3cLstxgkAwENsrPrVlc8NaNrBMlqlpQWOYYUEmUcTmdPWghNlXCZHZVWNT8FTUn8Yez6QpTsmEoWdgkbVe3msRntpIhyFhk6OB6cG1bjVaZi7NThpwt0WW6ZH+FchjqP2XTD/rr1jEDvSq5EgMSfcGvC1+/+hs9seAPERYFpXv3b/Z5H7B2m114OVxzr4nz3Pk7yQUZ3phKdrmnxCDMca2zdbmLOHhc8DZY/To/geDXDVQI3FFoibErUE5KdeMva9LMRmeaSTHtfgaXi61JlHz9BFcCH1TlpAav5j+uPQQmjsxMQ3o3OK2LpQmoWq6pO4c/sAEa4FgdxISNo/AGtGvtyUY6dRGTlDo2cVG4e6gA4MTMYlGHr10PVqf40K7oH7yhKqWV+x13ykVkdxaC8+1WKeVMfUIoVlI5EvMQOrrLhVwOLd/GvQjPsiD05WIMJMXZA+vD+XVFgpGU=
+  - stage: testServerGO
+    os: osx
+    osx_image: xcode11.6
+    notifications:
+      email:
+        recipients:
+        - newfarry@126.com
+        on_success: always
+    script:
+    - cat README.md
+    - brew update
+    - cp server-go.rb $(brew --repo homebrew/core)/Formula
+    - brew install --build-from-source server-go
+    - brew test server-go
+    - brew audit --strict --new-formula server-go
+    - brew style server-go
+    - cat $(brew --repo homebrew/core)/Formula/server-go.rb
+    - brew services start server-go
+env:
+  global:
+    secure: SY86FCf1utAQrtMUakWfmgcLuQTGQatxCBE8Hw5eiSU2MCD/KpJDvQK8lKjuBdF4TDdGbyYezquw65LgQYIw1BPf75PnSIMV/GuHh+mfpWceVM8LWqO8a3AtRGhKW3FmgvpguhqpuyyrkGQ9zRjpFROTpxkk/HZtYS2l2lteYWkuQ+U/N4g2I+CEwo70a2Gs8o1ALXZjfs/qz+CgNJAGlY2i7Kt1gtkPVYUBDiAqEHGhFaEVLus71ze7Cp9853Htio6Q5Xlg+nq83Bz/akxuym7eN1yCnspvV6dhwg5+p+23vjaBu03LQReDyiE5V/9YoOIQ2/PiVa9gj0USPpEDdn4IXVaDziSdYRkrGdN/miRUbW2wRe5ydUYMkU3BCN5azIRXYn12FdngmiH7wQBUr8mCuOg8E6PWWWyT7myjt4no01cR2KONXQyELsFV6cSFLTYdXIE9zoMr8qdsVq+bD+jnbCvy7kjz2xAG8s5QBfDm6J2egmcBNc/hoC9046ltiVcIiv5GWuN1TyE5mjBi+B0pHi+e6SkUXL112OPoF/FN2j1vmdRGEiwtCnkVa8efWzkcSmfaqMXg1LyiC3aYO9SmvnOx3CoTjHJg+cXePtoITkHySjAtPUjW4U0t8XFrDJAvZS5UmIQ4swpaSm91XNk5B4bGnFOF5LcUG09fnZg=
