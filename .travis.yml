@@ -47,3 +47,4 @@ jobs:
         - brew audit --strict --new-formula server-go
         - brew style server-go
         - cat $(brew --repo homebrew/core)/Formula/server-go.rb
+        - brew services start server-go
